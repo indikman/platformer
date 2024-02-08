@@ -27,7 +27,7 @@ namespace Spatialminds.Platformer
 
         public bool isGround { get; private set; }
 
-        void Start()
+        public virtual void Start()
         {
             characterRB = GetComponent<Rigidbody2D>();
         }

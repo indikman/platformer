@@ -4,18 +4,24 @@ using UnityEngine;
 
 namespace Spatialminds.Platformer
 {
-    public class Player : MonoBehaviour
+    public class Player : Character
     {
-        // Start is called before the first frame update
-        void Start()
+        InputManager inputManager;
+
+        public override void Start()
         {
-        
+            inputManager = FindObjectOfType<InputManager>();
+            base.Start();
         }
 
-        // Update is called once per frame
-        void Update()
+        public override void Update()
         {
-        
+            if(inputManager == null) return;
+
+            SetHorizontal(inputManager.Move.x);
+            SetJumpPressed(inputManager.isJumpPressed);
+
+            base.Update();
         }
     }
 }

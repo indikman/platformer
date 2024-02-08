@@ -37,7 +37,7 @@ namespace Spatialminds.Platformer
 
         public Vector2 Move => moveAction.ReadValue<Vector2>();
 
-        public bool isJumpPressed => jumpValueAction.ReadValue<int>() == 0 ? true : false;
+        public bool isJumpPressed => jumpAction.triggered && jumpAction.ReadValue<float>() > 0;
 
         public void OnInteract(InputAction.CallbackContext obj) => Interact?.Invoke();
 
