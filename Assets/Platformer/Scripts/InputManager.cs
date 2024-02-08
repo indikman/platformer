@@ -15,6 +15,7 @@ namespace Spatialminds.Platformer
         InputAction jumpAction;
         InputAction fireAction;
         InputAction interactAction;
+        InputAction jumpValueAction;
 
         public event Action Jump;
         public event Action Fire;
@@ -27,6 +28,7 @@ namespace Spatialminds.Platformer
             jumpAction = playerInput.actions["Jump"];
             fireAction = playerInput.actions["Fire"];
             interactAction = playerInput.actions["Interact"];
+            interactAction = playerInput.actions["JumpValue"];
 
             jumpAction.performed += OnJump;
             fireAction.performed += OnFire;
@@ -34,6 +36,8 @@ namespace Spatialminds.Platformer
         }
 
         public Vector2 Move => moveAction.ReadValue<Vector2>();
+
+        public bool isJumpPressed => jumpValueAction.ReadValue<int>() == 0 ? true : false;
 
         public void OnInteract(InputAction.CallbackContext obj) => Interact?.Invoke();
 
