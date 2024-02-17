@@ -77,7 +77,6 @@ namespace Spatialminds.Platformer
             else if (characterRB.velocity.y > 0 && !isJumpPressed) // When we are jumping up but has released the jump button.
             {
                 characterRB.velocity += (lowJumpMultiplier - 1) * Physics2D.gravity.y * Vector2.up * Time.deltaTime;
-                Debug.Log("Jump is not pressed");
             }
         }
 
