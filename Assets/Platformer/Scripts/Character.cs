@@ -18,18 +18,27 @@ namespace Spatialminds.Platformer
         [SerializeField] private float fallMultiplier = 2.5f;
         [SerializeField] private float lowJumpMultiplier = 2f;
 
-        float horizontal;
+        public float horizontal {get; private set;}
         bool isJumpPressed;
-        Rigidbody2D characterRB;
+        public Rigidbody2D characterRB {get; private set;}
         Vector2 direction;
         bool facingRight = true;
+        public CharacterStateManager characterStateManager {get; private set;}
+        [SerializeField] private CharacterAnimatorManager characterAnim;
+        public CharacterAnimatorManager CharacterAnim() => characterAnim;
         
 
         public bool isGround { get; private set; }
 
-        public virtual void Start()
+        void Awake()
         {
             characterRB = GetComponent<Rigidbody2D>();
+            characterStateManager = new CharacterStateManager(this);
+        }
+
+        public virtual void Start()
+        {
+            characterStateManager.Initialize(characterStateManager.idleState);
         }
 
         public virtual void Update()
@@ -37,6 +46,8 @@ namespace Spatialminds.Platformer
             CheckIsGround();
             UpdateCharacterDirection();
             UpdateFall();
+
+            characterStateManager.Update();
         }
 
         void FixedUpdate()
@@ -48,7 +59,7 @@ namespace Spatialminds.Platformer
 
         internal void SetJumpPressed(bool value) => isJumpPressed = value;
 
-        internal void MovePlayer()
+        public void MovePlayer()
         {
             direction = transform.right * horizontal;
             transform.position = Vector2.MoveTowards(transform.position, (Vector2)transform.position + direction, moveSpeed * Time.deltaTime);
