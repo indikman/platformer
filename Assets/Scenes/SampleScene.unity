@@ -687,15 +687,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 604d623715280904795bec82854ea9f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 9
-  jumpVelocity: 8
+  moveSpeed: 10
+  jumpVelocity: 20
   groundCheckDistance: 0.1
   groundCheckOrigin: {x: 0, y: -1}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  fallMultiplier: 7
-  lowJumpMultiplier: 5
+  fallMultiplier: 8
+  lowJumpMultiplier: 25
+  highJumpMultiplier: 8
+  clampFallSpeed: 0
+  fallSpeedClamp: 50
   characterAnim: {fileID: 662602104}
 --- !u!50 &731943727
 Rigidbody2D:

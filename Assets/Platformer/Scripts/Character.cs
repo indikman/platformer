@@ -17,6 +17,10 @@ namespace Spatialminds.Platformer
         [Header("Falling")]
         [SerializeField] private float fallMultiplier = 2.5f;
         [SerializeField] private float lowJumpMultiplier = 2f;
+        [SerializeField] private float highJumpMultiplier = 2f;
+        [SerializeField] private bool clampFallSpeed = false;
+        [SerializeField] private float fallSpeedClamp = 50f;
+
 
         public float horizontal {get; private set;}
         bool isJumpPressed;
@@ -84,10 +88,14 @@ namespace Spatialminds.Platformer
             if (characterRB.velocity.y < 0)
             {
                 characterRB.velocity += (fallMultiplier - 1) * Physics2D.gravity.y * Vector2.up * Time.deltaTime;
+                //characterRB.velocity = new Vector3(characterRB.velocity.x, Mathf.Clamp(characterRB.velocity.y, ))
             }
             else if (characterRB.velocity.y > 0 && !isJumpPressed) // When we are jumping up but has released the jump button.
             {
                 characterRB.velocity += (lowJumpMultiplier - 1) * Physics2D.gravity.y * Vector2.up * Time.deltaTime;
+            }else if(characterRB.velocity.y > 0 && isJumpPressed)
+            {
+                characterRB.velocity += (highJumpMultiplier - 1) * Physics2D.gravity.y * Vector2.up * Time.deltaTime;
             }
         }
 
