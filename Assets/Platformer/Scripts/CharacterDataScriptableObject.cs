@@ -11,16 +11,23 @@ namespace Spatialminds.Platformer
     {
         public AnimatorController characterAnimatorController;
 
-        public string[] animParams;
+        //public string[] animParams;
 
         public Dictionary<string, int> animatorParameters = new Dictionary<string, int>();
 
         public void UpdateAnimatorParameters()
         {
-            foreach (var anim in animParams)
+
+            if(characterAnimatorController==null)
             {
-                if(animatorParameters.TryAdd(anim, Animator.StringToHash(anim))) Debug.Log("Added param " + anim);
-                else Debug.LogWarning("Param " + anim + " already exists. Not adding it again!");
+                Debug.LogError("Animator controller not assigned");
+                return;
+            }
+
+            foreach (var anim in characterAnimatorController.parameters)
+            {
+                if(animatorParameters.TryAdd(anim.name, anim.nameHash)) Debug.Log("Added param " + anim.name);
+                else Debug.LogWarning("Param " + anim.name + " already exists. Not adding it again!");
             }
 
             Debug.Log("All the Params added");
