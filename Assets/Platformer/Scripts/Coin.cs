@@ -7,10 +7,12 @@ namespace Spatialminds.Platformer
     {
         string who;
         private CoinCollectorService coinCollectorService;
+        private AudioPlayerService audioPlayerService;
 
         void Start()
         {
             coinCollectorService = ServiceLocator.instance.GetService<CoinCollectorService>();
+            audioPlayerService = ServiceLocator.instance.GetService<AudioPlayerService>();
         }
 
 
@@ -18,6 +20,7 @@ namespace Spatialminds.Platformer
         {
             Debug.Log($"Collected the coin by {who}");
             coinCollectorService.CollectCoin();
+            audioPlayerService.PlayAudio("coin");
             Destroy(gameObject);
         }
 
