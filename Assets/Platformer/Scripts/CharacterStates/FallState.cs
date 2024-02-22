@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace Spatialminds.Platformer
 {
-    public class JumpState : IState
+    public class FallState : IState
     {
         private Character character;
 
-        public JumpState(Character character)
+        public FallState(Character character)
         {
             this.character = character;
         }
@@ -16,7 +16,6 @@ namespace Spatialminds.Platformer
         public void EnterState()
         {
             character.CharacterAnim().SetTrigger("jump");
-            ServiceLocator.instance.GetService<AudioPlayerService>().PlayAudio("jump");
         }
 
         public void ExitState()

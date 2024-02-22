@@ -33,7 +33,10 @@ namespace Spatialminds.Platformer
                 }
             }else
             {
-                character.characterStateManager.ChangeState(character.characterStateManager.jumpState);
+                if(character.characterRB.velocity.y <= 0)
+                    character.characterStateManager.ChangeState(character.characterStateManager.fallState);
+                else
+                    character.characterStateManager.ChangeState(character.characterStateManager.jumpState);
             }
         }
     }

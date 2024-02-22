@@ -14,6 +14,7 @@ namespace Spatialminds.Platformer
         public JumpState jumpState;
         public IdleState idleState;
         public HitState hitState;
+        public FallState fallState;
 
         public CharacterStateManager(Character character) 
         {
@@ -24,6 +25,7 @@ namespace Spatialminds.Platformer
             idleState = new IdleState(character);
 
             hitState = new HitState(character);
+            fallState = new FallState(character);
 
 
         }
