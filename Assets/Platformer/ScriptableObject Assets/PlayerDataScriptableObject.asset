@@ -9,14 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80cdc8d3d7c7ae64b9301fcfb315de5b, type: 3}
+  m_Script: {fileID: 11500000, guid: a53b7c5c5f9603f4cbfbe1e9b680bff6, type: 3}
   m_Name: PlayerDataScriptableObject
   m_EditorClassIdentifier: 
   characterAnimatorController: {fileID: 9100000, guid: 48dec832076cce14a9b2322169584943, type: 2}
-  animParams:
-  - jump
-  - isRunning
-  - isIdle
-  - isFalling
-  - doubleJump
-  - hit
